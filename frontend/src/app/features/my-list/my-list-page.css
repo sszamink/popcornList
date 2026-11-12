@@ -1,0 +1,15 @@
+.page {
+  padding: 1.5rem 0;
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+
+.empty a {
+  text-decoration: none;
+}

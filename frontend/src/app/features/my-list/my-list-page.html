@@ -1,0 +1,30 @@
+<section class="page">
+  <div class="page-header">
+    <h1>Moja lista</h1>
+    <!-- TODO(3): statystyki, np. "✅ 5 obejrzanych · ⏳ 7 do obejrzenia (42%)" -->
+  </div>
+
+  <!-- TODO(2): przyciski filtra: Wszystkie / Do obejrzenia / Obejrzane -->
+
+  @if (store.loading()) {
+    <p class="muted">Ładowanie listy…</p>
+  } @else {
+    <div class="grid">
+      <!-- TODO(2): zamień store.items() na visibleItems() -->
+      @for (item of store.items(); track item.id) {
+        <app-show-card
+          [item]="item"
+          mode="list"
+          (toggleWatched)="store.toggleWatched(item)"
+          (remove)="store.remove(item)"
+        />
+      } @empty {
+        <div class="empty">
+          <span class="emoji">🍿</span>
+          <p>Twoja lista jest pusta.</p>
+          <a routerLink="/search" class="btn btn-primary">🔍 Wyszukaj serial</a>
+        </div>
+      }
+    </div>
+  }
+</section>

@@ -1,0 +1,143 @@
+/*
+ * Style globalne PopcornList.
+ * Kolory są w zmiennych CSS - komponenty używają np. var(--primary).
+ * Dzięki temu zmiana motywu (TODO 4) to tylko podmiana wartości zmiennych.
+ */
+
+:root {
+  --bg: #f6f4ef;
+  --surface: #ffffff;
+  --text: #1f1f24;
+  --muted: #6b6b76;
+  --border: #e3e0d8;
+  --primary: #e8590c;        /* popcornowy pomarańcz */
+  --primary-hover: #c94c0a;
+  --success: #2f9e44;
+  --danger: #e03131;
+  --shadow: 0 1px 3px rgb(0 0 0 / 0.08), 0 4px 12px rgb(0 0 0 / 0.04);
+  --radius: 12px;
+}
+
+/* TODO(4): odkomentuj ciemny motyw i przełączaj go atrybutem data-theme na <html>
+[data-theme='dark'] {
+  --bg: #16161a;
+  --surface: #222228;
+  --text: #ececf1;
+  --muted: #9a9aa6;
+  --border: #34343c;
+  --primary: #ff7a33;
+  --primary-hover: #ff9257;
+  --shadow: 0 1px 3px rgb(0 0 0 / 0.4);
+}
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+a {
+  color: var(--primary);
+}
+
+h1 {
+  font-size: 1.6rem;
+  margin: 0 0 1rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* --- Przyciski --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn:hover {
+  border-color: var(--primary);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+}
+
+.btn-success {
+  border-color: var(--success);
+  color: var(--success);
+}
+
+.btn-icon {
+  border-color: transparent;
+  background: transparent;
+}
+
+/* --- Siatka kart --- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--muted);
+}
+
+.empty .emoji {
+  font-size: 3rem;
+  display: block;
+}
+
+/* --- Komunikaty --- */
+.alert {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--danger) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--danger) 40%, transparent);
+  color: var(--text);
+}

@@ -1,0 +1,29 @@
+# --- Zależności ---
+node_modules/
+
+# --- Wyniki budowania (Angular) ---
+dist/
+.angular/
+
+# --- Sekrety: NIGDY nie commituj ---
+.env
+*.env
+!.env.example
+
+# --- Dane użytkownika (Twoja lista) ---
+backend/data/
+
+# --- Edytory ---
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+
+# --- Testy / logi / system ---
+coverage/
+*.log
+.DS_Store
+Thumbs.db
+
+# --- Lokalne ustawienia Claude Code ---
+.claude/settings.local.json

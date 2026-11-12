@@ -1,0 +1,41 @@
+<section class="page">
+  <h1>Szukaj seriali</h1>
+
+  <form class="search-form" (submit)="search($event)">
+    <input
+      type="search"
+      class="search-input"
+      placeholder="np. Breaking Bad, The Office, Wiedźmin…"
+      aria-label="Tytuł serialu"
+      [value]="query()"
+      (input)="onInput($event)"
+    />
+    <button type="submit" class="btn btn-primary" [disabled]="loading()">🔍 Szukaj</button>
+  </form>
+
+  @if (error(); as message) {
+    <div class="alert" role="alert">{{ message }}</div>
+  }
+
+  @if (loading()) {
+    <p class="muted">Szukam…</p>
+  } @else {
+    <div class="grid">
+      @for (result of results(); track result.externalId) {
+        <app-show-card
+          [item]="result"
+          mode="search"
+          [onList]="store.isOnList(result)"
+          (add)="store.add(result)"
+        />
+      } @empty {
+        @if (searched()) {
+          <div class="empty">
+            <span class="emoji">🤷</span>
+            <p>Nic nie znaleziono. Spróbuj innego tytułu.</p>
+          </div>
+        }
+      }
+    </div>
+  }
+</section>

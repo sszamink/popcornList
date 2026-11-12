@@ -1,0 +1,34 @@
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a routerLink="/" class="logo">🍿 PopcornList</a>
+
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Moja lista <span class="count">{{ store.count() }}</span>
+      </a>
+      <a routerLink="/search" routerLinkActive="active">🔍 Szukaj</a>
+      <!-- TODO(13): link do "Co dziś obejrzeć?" (/tonight) -->
+    </nav>
+
+    <!-- TODO(4): przycisk 🌙 / ☀️ przełączający motyw -->
+  </div>
+</header>
+
+<!-- TODO(5): zamień ten baner na <p-toast /> (PrimeNG) -->
+@if (store.error(); as message) {
+  <div class="container">
+    <div class="alert" role="alert">
+      <span>{{ message }}</span>
+      <button type="button" class="btn btn-icon" aria-label="Zamknij" (click)="store.clearError()">✕</button>
+    </div>
+  </div>
+}
+
+<main class="container">
+  <router-outlet />
+</main>
+
+<footer class="container footer">
+  Dane seriali:
+  <a href="https://www.tvmaze.com" target="_blank" rel="noopener">TVmaze</a> (CC BY-SA)
+</footer>

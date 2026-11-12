@@ -1,0 +1,54 @@
+<article class="card" [class.watched]="item().watched">
+  <div class="poster">
+    @if (item().posterUrl; as url) {
+      <img [src]="url" [alt]="'Plakat: ' + item().title" loading="lazy" />
+    } @else {
+      <span class="no-poster">🍿</span>
+    }
+  </div>
+
+  <div class="body">
+    <!-- TODO(6): zrób z tytułu link do strony szczegółów: [routerLink]="['/show', ...]" -->
+    <h3 class="title">
+      {{ item().title }}
+      @if (item().year) {
+        <span class="year">({{ item().year }})</span>
+      }
+    </h3>
+
+    @if (mode() === 'search') {
+      @if (item().summary; as summary) {
+        <p class="summary">{{ summary | slice: 0 : 140 }}@if (summary.length > 140) {…}</p>
+      }
+      <div class="actions">
+        @if (onList()) {
+          <span class="badge">✓ Na liście</span>
+        } @else {
+          <button type="button" class="btn btn-primary" (click)="add.emit()">+ Dodaj</button>
+        }
+      </div>
+    } @else {
+      <!-- TODO(1): tutaj <app-star-rating [value]="..." (rated)="..." /> -->
+      <div class="actions">
+        <button
+          type="button"
+          class="btn"
+          [class.btn-success]="item().watched"
+          (click)="toggleWatched.emit()"
+        >
+          {{ item().watched ? '✅ Obejrzane' : '⬜ Do obejrzenia' }}
+        </button>
+        <!-- TODO(8): przycisk 📝 otwierający notatki -->
+        <button
+          type="button"
+          class="btn btn-icon"
+          [attr.aria-label]="'Usuń ' + item().title"
+          title="Usuń z listy"
+          (click)="remove.emit()"
+        >
+          🗑️
+        </button>
+      </div>
+    }
+  </div>
+</article>

@@ -1,0 +1,6 @@
+{
+  // VS Code zaproponuje instalację tych rozszerzeń po otwarciu projektu.
+  "recommendations": [
+    "angular.ng-template"
+  ]
+}
